@@ -5,3 +5,5 @@ instalar dependencias
 
 //Para instalar as migrations
 npx sequelize-cli migration:generate --name create-categories-table
+
+npx sequelize-cli migration:generate --name create-courses-table
