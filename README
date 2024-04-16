@@ -1,2 +1,7 @@
 POSTGREE precisa estar sem nenhum banco de dados criado com o nome onebitflix.
+
+
 instalar dependencias
+
+//Para instalar as migrations
+npx sequelize-cli migration:generate --name create-categories-table

@@ -2,6 +2,7 @@ import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express"
 import AdminJSSequelize from "@adminjs/sequelize"
 import { sequelize } from "../database";
+import { adminJsResources } from "./resources";
 
 AdminJS.registerAdapter(AdminJSSequelize)
 
@@ -9,7 +10,10 @@ export const adminJs = new AdminJS({
     //Admin connect to database
     databases: [sequelize],
     //The path
-    rootPath: "/admin" , 
+    rootPath: "/admin" ,
+
+    resources: adminJsResources, 
+    
     //Interface modifier
     branding: {
         companyName: 'OneBitFlix',
