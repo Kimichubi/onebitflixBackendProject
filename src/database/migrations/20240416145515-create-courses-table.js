@@ -1,7 +1,6 @@
-'use strict';
+// src/database/migrations/XXXXXXXXXXXXXX-create-titles-table.js
 
-const { name } = require("@adminjs/express");
-const { type } = require("os");
+'use strict';
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -49,3 +48,5 @@ module.exports = {
     await queryInterface.dropTable('courses')
   }
 };
+
+//npx sequelize-cli db:migrate
