@@ -53,4 +53,4 @@ export const Episode = sequelize.define<EpisodeInstance, Episode>('Episode', {
   }
 })
 
-//Criação de modelos com tipagem forte
+//Criação de modelos com tipagem forte'
