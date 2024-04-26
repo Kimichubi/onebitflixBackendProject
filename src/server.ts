@@ -8,7 +8,10 @@ const app = express();
 //express app.use(caminho, rotas)
 //localhost:3000/admin
 app.use(express.static("public"));
+app.use(express.json());
+
 app.use(adminJs.options.rootPath, adminJsRouter);
+
 app.use(router);
 
 const PORT = process.env.PORT || 3000;
