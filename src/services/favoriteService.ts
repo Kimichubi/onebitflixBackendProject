@@ -24,8 +24,11 @@ export const favoriteService = {
     });
 
     return {
-        userId,
-        courses: favorites.map(favorites => favorites.Course)
+      userId,
+      courses: favorites.map((favorites) => favorites.Course),
     };
+  },
+  delete: async (userId: number, courseId: number) => {
+    await Favorite.destroy({ where: { userId, courseId } });
   },
 };
