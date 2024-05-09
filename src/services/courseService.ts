@@ -2,7 +2,7 @@ import { Op } from "sequelize";
 import { Course } from "../models";
 
 export const courseService = {
-  findBuIdWithEpisodes: async (id: string) => {
+  findByIdWithEpisodes: async (id: string) => {
     const courseWithEpisodes = await Course.findByPk(id, {
       attributes: ["id", "name", "synopsis", ["thumbnail_url", "thumbnailUrl"]],
       include: {

@@ -23,7 +23,8 @@ export interface UserInstance
     User {
   checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void;
   password: string;
-}
+} 
+
 
 export const User = sequelize.define<UserInstance, User>(
   "users",
