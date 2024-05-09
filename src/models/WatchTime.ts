@@ -11,7 +11,10 @@ export interface WatchTimeAttributes {
 
 export interface WatchTimeInstance
   extends Model<WatchTimeAttributes>,
-    WatchTimeAttributes {}
+    WatchTimeAttributes {
+      updatedAt:number | string;
+      
+    }
 
 export const WatchTime = sequelize.define<
   WatchTimeInstance,
