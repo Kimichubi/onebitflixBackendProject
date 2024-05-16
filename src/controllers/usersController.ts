@@ -8,7 +8,7 @@ export const usersController = {
     const currentUser = req.user!;
 
     try {
-      return  res.json(currentUser);
+      return res.json(currentUser);
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({ message: err.message });
@@ -26,6 +26,28 @@ export const usersController = {
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({ message: err.message });
+      }
+    }
+  },
+
+  //PUT /users/current
+
+  update: async (req: AuthenticatedRequest, res: Response) => {
+    const { id } = req.user!;
+    const { firstName, lastName, phone, email, birth } = req.body;
+
+    try {
+      const updatedUser = await userService.update(id, {
+        firstName,
+        lastName,
+        phone,
+        birth,
+        email,
+      });
+      return res.json(updatedUser);
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(400).json({ message: error.message });
       }
     }
   },
