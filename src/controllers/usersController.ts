@@ -35,6 +35,7 @@ export const usersController = {
   update: async (req: AuthenticatedRequest, res: Response) => {
     const { id } = req.user!;
     const { firstName, lastName, phone, email, birth } = req.body;
+    //PUT /users/current/password
 
     try {
       const updatedUser = await userService.update(id, {
@@ -50,5 +51,19 @@ export const usersController = {
         return res.status(400).json({ message: error.message });
       }
     }
+  },
+  //PUT /users/current/password
+  updatePassword: async (req: AuthenticatedRequest, res: Response) => {
+    const user = req.user!;
+    const { currentPassword, newPassword } = req.body;
+    try {
+      user.checkPassword(currentPassword, async (err, isSame) => {
+        if (err) throw err;
+        if (!isSame) throw new Error("Senha incorreta");
+
+        await userService.updatePassword(user.id, newPassword);
+        return res.status(204).send();
+      });
+    } catch (error) {}
   },
 };
