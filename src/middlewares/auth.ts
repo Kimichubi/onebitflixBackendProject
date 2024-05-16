@@ -57,7 +57,7 @@ export function ensureAuthViaQuery(
         message: "Não autorizado: token inválido",
       });
     const user = await userService.findByEmail((decoded as JwtPayload).email);
-    req.user = user
-    next()
+    req.user = user;
+    next();
   });
 }
