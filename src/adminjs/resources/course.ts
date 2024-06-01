@@ -38,7 +38,7 @@ export const courseResourceFeatures: FeatureType[] = [
   uploadFileFeature({
     provider: {
       local: {
-        bucket: path.join(__dirname, "..", "..", "..", "uploads"),
+        bucket: path.join(__dirname, "..", "..", "..", "public"),
       },
     },
     properties: {
@@ -48,3 +48,7 @@ export const courseResourceFeatures: FeatureType[] = [
     uploadPath: (record , filename) => `thumbnails/course-${record.get('id')}/${filename}` 
   }),
 ];
+
+
+
+

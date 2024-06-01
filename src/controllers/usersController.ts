@@ -1,14 +1,16 @@
 import { Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/auth";
 import { userService } from "../services/userService";
+import { User } from "../models";
 
 export const usersController = {
   //GET /users/current
   show: async (req: AuthenticatedRequest, res: Response) => {
-    const currentUser = req.user!;
+    const { id } = req.user!;
+    const user = await User.findByPk(id);
 
     try {
-      return res.json(currentUser);
+      return res.json(user);
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({ message: err.message });
@@ -35,7 +37,6 @@ export const usersController = {
   update: async (req: AuthenticatedRequest, res: Response) => {
     const { id } = req.user!;
     const { firstName, lastName, phone, email, birth } = req.body;
-    //PUT /users/current/password
 
     try {
       const updatedUser = await userService.update(id, {
@@ -58,12 +59,20 @@ export const usersController = {
     const { currentPassword, newPassword } = req.body;
     try {
       user.checkPassword(currentPassword, async (err, isSame) => {
-        if (err) throw err;
-        if (!isSame) throw new Error("Senha incorreta");
+        if (err) {
+          res.status(401).json(err);
+        }
+        if (!isSame) {
+          res.status(400).send();
+        }
 
         await userService.updatePassword(user.id, newPassword);
         return res.status(204).send();
       });
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(400).json({ message: error.message });
+      }
+    }
   },
 };

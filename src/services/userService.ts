@@ -110,7 +110,7 @@ export const userService = {
       },
     });
 
-    if (!userWithWatchingEpisodes) throw new Error("Usuário não encontrado.");
+    if (!userWithWatchingEpisodes) console.error("Usúario não encontrado.");
 
     const keepWatchingList = filterLastEpisodesByCourse(
       userWithWatchingEpisodes?.Episodes!

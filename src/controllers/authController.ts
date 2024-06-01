@@ -14,7 +14,8 @@ const authController = {
       const userAlreadyExists = await userService.findByEmail(email);
 
       if (userAlreadyExists) {
-        throw new Error("Este e-mail já está cadastrado.");
+        console.error("Este e-mail já está cadastrado.");
+        return;
       }
 
       const user = await userService.create({
@@ -24,6 +25,8 @@ const authController = {
         birth,
         email,
         password,
+        createdAt: new Date(),
+        updatedAt: new Date(),
         role: "user",
       });
 

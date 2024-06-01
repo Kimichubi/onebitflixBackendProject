@@ -12,6 +12,8 @@ export interface User {
   birth: Date;
   email: string;
   password: any;
+  createdAt: Date;
+  updatedAt: Date;
   role: "admin" | "user";
 }
 
@@ -66,6 +68,14 @@ export const User = sequelize.define<UserInstance, User>(
     role: {
       allowNull: false,
       type: DataTypes.STRING,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
     },
   },
   {
